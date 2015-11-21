@@ -21,6 +21,63 @@ struct node {
 	struct node *next;
 };
 
-void sll_012_sort(struct node *head){
+// Total two methods
+
+// NORMAL SORTING (Method 1)
+/*
+void sll_012_sort(struct node *head)
+{
+	struct node *i, *j;
+	int temp;
+
+	for (i = head; i != NULL; i = i->next)
+	{
+		for (j = i->next; j != NULL; j = j->next)
+		{
+			if (i->data > j->data)
+			{
+				temp = i->data; 
+				i->data = j->data;
+				j->data = temp;
+			}
+		}
+	}
+
+}
+*/
+
+// Above method has loop in loop, this method has no loop inside a loop. 
+
+// 012 SORTING (Method 2)
+
+void sll_012_sort(struct node *head)
+{
+	struct node *i, *j;
+	int temp;
+
+	for (i = head, j = head; i != NULL; i = i->next)
+	{
+		if (i->data == 0)
+		{
+			temp = i->data;
+			i->data = j->data;
+			j->data = temp;
+			j = j->next;
+		}
+	}
 	
+	i = j;
+	
+	while (i != NULL)
+	{
+		if (i->data == 1)
+		{
+			temp = i->data;
+			i->data = j->data;
+			j->data = temp;
+			j = j->next;
+		}
+		i = i->next;
+	}
+
 }
